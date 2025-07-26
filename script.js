@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
 
-        fetch('http://localhost:3000/api/search', {
+        fetch('https://randomnoms-backend.onrender.com/api/search', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
