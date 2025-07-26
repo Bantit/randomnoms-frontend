@@ -27,6 +27,37 @@ document.addEventListener("DOMContentLoaded", function () {
     searchEnabled: true
   });
 
+
+  async function searchByMoodAndZip(mood, zip) {
+  const output = document.getElementById('output');
+
+  try {
+    const response = await fetch('https://randomnoms-backend.onrender.com/api/mood-search', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ mood, zip })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Server responded with status ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (!data.length) {
+      output.innerHTML = "No results found.";
+    } else {
+      output.innerHTML = data.map(place => `<p>${place.name}</p>`).join('');
+    }
+  } catch (error) {
+    console.error("Geo fallback error:", error);
+    output.innerHTML = "Something went wrong. Try another zip.";
+  }
+}
+
+
   // ⭐ NEW: helper for star PNG
   function getStarImage(rating) {
     const rounded = Math.round(rating * 2) / 2;
@@ -123,6 +154,14 @@ document.addEventListener("DOMContentLoaded", function () {
   function searchByMoodAndLocation(mood) {
     const zip = zipInput.value.trim();
     output.innerHTML = `<p>Fetching Randy’s picks...</p>`;
+
+
+document.getElementById("mood-zip-button").addEventListener("click", () => {
+  const mood = document.querySelector("input[name='mood']:checked").value;
+  const zip = document.getElementById("zip").value;
+  searchByMoodAndZip(mood, zip);
+});
+
 
     // ZIP provided
     if (zip) {
