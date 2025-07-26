@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RandomNoms</title>
+
+  <!-- Choices.js CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+  <link rel="stylesheet" href="https://use.typekit.net/lhd2kov.css">
+
+  
+</head>
+<body>
+  <div class="header">
+  <h1 id="parallax-title">RandomNoms 🍔</h1>
+</div>
+
+
+<div class="slogan"> 
+  <h2>Find your food!</h2>
+</div>
+
+  <div class="main-container">
+    <!-- LEFT: Results -->
+    <div class="results-section">
+      <div id="output">
+        <p>Randy’s picks will show up here 🐶</p>
+      </div>
+    </div>
+
+    <!-- RIGHT: User selections -->
+    <div class="selection-section">
+      <div class="dropdown-wrapper">
+        <div>
+          <label for="foodDropdown">What sounds good?</label>
+          <select id="foodDropdown" multiple></select>
+        </div>
+
+        <div>
+          <label for="radiusDropdown">Search Radius:</label>
+          <select id="radiusDropdown">
+            <option value="1000">Walking distance (1 km)</option>
+            <option value="5000" selected>Nearby (5 km)</option>
+            <option value="10000">Wider search (10 km)</option>
+            <option value="25000">City-wide (25 km)</option>
+            <option value="40000">Max Range (40 km)</option>
+          </select>
+        </div>
+      </div>
+
+      <button id="randomizeButton">Let Randy Decide</button>
+
+      <!-- Mood Filter Buttons -->
+      <div class="mood-filter-section">
+        <h3>How Are You Feeling?</h3>
+        <div id="mood-buttons">
+          <button data-mood="comfort">😋 Craving Comfort</button>
+          <button data-mood="spicy">🌶 Feeling Spicy</button>
+          <button data-mood="budget">💸 On a Budget</button>
+          <button data-mood="fancy">🥂 Fancy & Fine</button>
+          <button data-mood="clean">🌱 Clean & Green</button>
+          <button data-mood="sweet">🧁 Sweet Tooth</button>
+          <button data-mood="random">🧍 Indecisive AF</button>
+        </div>
+      </div>
+
+      <!-- ZIP Code Input -->
+      <div id="zip-input">
+        <p>Not where you are? Enter a ZIP code:</p>
+        <input type="text" id="zip" placeholder="e.g., 35801" />
+        <button id="use-zip">Search</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const header = document.querySelector('.header');
+  const title = document.getElementById('parallax-title');
+
+  header.addEventListener('mousemove', (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 20;
+    const y = (e.clientY / window.innerHeight - 0.5) * 20;
+    title.style.transform = `rotateX(${-y}deg) rotateY(${x}deg)`;
+  });
+
+  header.addEventListener('mouseleave', () => {
+    title.style.transform = 'rotateX(0deg) rotateY(0deg)';
+  });
+</script>
+
+
+  <!-- Choices.js -->
+  <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+
+  <!-- Your Script -->
+  <script src="script.js"></script>
+</body>
+</html>
