@@ -233,7 +233,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          fetch('/api/mood-search', {
+          fetch('https://randomnoms-backend.onrender.com/api/mood-search', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
