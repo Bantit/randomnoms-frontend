@@ -156,12 +156,10 @@ document.addEventListener("DOMContentLoaded", function () {
     output.innerHTML = `<p>Fetching Randy’s picks...</p>`;
 
 
-
-function searchByMoodAndLocation(mood) {
+ function searchByMoodAndLocation(mood) {
   const zip = zipInput.value.trim();
   output.innerHTML = `<p>Fetching Randy’s picks...</p>`;
 
-  // ZIP provided
   if (zip) {
     fetch('https://randomnoms-backend.onrender.com/api/mood-search', {
       method: 'POST',
@@ -180,7 +178,6 @@ function searchByMoodAndLocation(mood) {
         output.innerHTML = `<p>🐶 Something went wrong. Try again!</p>`;
       });
 
-    // No ZIP? Try geolocation
   } else if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -213,6 +210,7 @@ function searchByMoodAndLocation(mood) {
     output.innerHTML = `<p>📍 Please enable location or enter a ZIP code.</p>`;
   }
 }
+
 
 
 
