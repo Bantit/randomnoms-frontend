@@ -216,11 +216,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // ZIP provided
     if (zip) {
-      fetch('/api/mood-search', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ mood, zip })
-      })
+      fetch('https://randomnoms-backend.onrender.com/api/mood-search', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ mood, zip })
+})
+
       .then(res => res.json())
       .then(displayMoodResults)
       .catch(err => {
